@@ -25,8 +25,8 @@ $(function(){
 $(window).resize(resizeCanvas);
  function resizeCanvas() {
         canvas.attr("width", $(window).get(0).innerWidth);
-        ctx.fillStyle="#48f";
-		ctx.fillRect(0, 0, canvas.width(), 300);
+  //       ctx.fillStyle="#48f";
+		// ctx.fillRect(0, 0, canvas.width(), 300);
  };
  // 动画
  function loop(){
@@ -74,10 +74,10 @@ starObj.prototype.draw=function(){
 			 // console.log(i+":"+this.Y[i]+":"+this.X[i]+":"+outR);
 			ctx.beginPath();
 			for(var j=0;j<5;j++){
-			ctx.lineTo(Math.cos((18+72*j-this.scale[i]*72)*Math.PI/180)*outR*this.scale[i]+this.X[i],
-					-Math.sin((18+72*j-this.scale[i]*72)*Math.PI/180)*outR*this.scale[i]+this.Y[i]);
-			ctx.lineTo(Math.cos((54+72*j-this.scale[i]*72)*Math.PI/180)*inR*this.scale[i]+this.X[i],
-					-Math.sin((54+72*j-this.scale[i]*72)*Math.PI/180)*inR*this.scale[i]+this.Y[i]);
+			ctx.lineTo(Math.cos((18+72*j-this.scale[i]*120)*Math.PI/180)*outR*this.scale[i]+this.X[i],
+					-Math.sin((18+72*j-this.scale[i]*120)*Math.PI/180)*outR*this.scale[i]+this.Y[i]);
+			ctx.lineTo(Math.cos((54+72*j-this.scale[i]*120)*Math.PI/180)*inR*this.scale[i]+this.X[i],
+					-Math.sin((54+72*j-this.scale[i]*120)*Math.PI/180)*inR*this.scale[i]+this.Y[i]);
 		
 			}
 			ctx.closePath();
@@ -102,7 +102,7 @@ starObj.prototype.draw=function(){
 // 产生一个星星
 starObj.prototype.born=function(i){
 	this.alive[i]=true;
-	this.X[i]=Math.random()*canvas.width();
+	this.X[i]=Math.random()*(canvas.width()+50)-100;
 	this.scale[i]=Math.random()*0.3+0.3;
 	this.deleX[i]=Math.random()*4-2;
 	// this.rot[i]=
@@ -111,10 +111,10 @@ starObj.prototype.born=function(i){
 
 starObj.prototype.update=function(){
 // console.log(starBornTimer);
-
+	var du=Math.random()*900+450
 	starBornTimer+=deltTime
-	if(starBornTimer>=900){
-		starBornTimer%=900;
+	if(starBornTimer>=du){
+		starBornTimer%=du;
 
 		for (var i = 0; i < this.num; i++) {
 			if(!this.alive[i]){
