@@ -12,8 +12,8 @@ var lastTime;
 $(function(){
 	canvas.attr("width", $(window).get(0).innerWidth);
 	ctx=$("#can").get(0).getContext("2d");
-	ctx.fillStyle="#48f";
-	ctx.fillRect(0, 0, canvas.width(), 300);
+	// ctx.fillStyle="#48f";
+	// ctx.fillRect(0, 0, canvas.width(), 300);
 	star=new starObj();
 	star.init();
 	lastTime=Date.now();
@@ -31,9 +31,9 @@ $(window).resize(resizeCanvas);
  // 动画
  function loop(){
  	// console.log("a");
- 	// ctx.clearRect(0,0,canvas.width(),300);
- // 	ctx.fillStyle="#48f";
-	// ctx.fillRect(0, 0, canvas.width(), 300);
+ 	ctx.clearRect(0,0,canvas.width(),300);
+ 	ctx.fillStyle="#48f";
+	ctx.fillRect(0, 0, canvas.width(), 300);
  	// 画星星
  	star.draw();
  	now=Date.now();
@@ -51,8 +51,9 @@ var starObj=function(){
 	this.X=[];
 	this.Y=[];
 	this.scale=[];
+	this.deleX=[];
 };
-starObj.prototype.num=10;
+starObj.prototype.num=5;
 // 初始化
 starObj.prototype.init = function() {
 	for (var i = 0; i < this.num; i++) {
@@ -60,40 +61,38 @@ starObj.prototype.init = function() {
 		this.X[i]=0;
 		this.Y[i]=0;
 		this.scale[i]=1;
+		this.deleX[i]=0;
 	}
 };
 // 生成星星
 starObj.prototype.draw=function(){
 	ctx.save();
-	rot=72;
-	ctx.globalAlpha=0.9;
+	ctx.globalAlpha=0.7;
 	for (var i = 0; i < this.num; i++) {
 		// console.log(this.alive[i]);
 		if(this.alive[i]){
-// console.log(this.alive[i]);
-			outR*=this.scale[i];
-			inR*=this.scale[i];
-			while(this.scale[i]>0){
-				this.scale[i]-=0.03;
-			};
+			 // console.log(i+":"+this.Y[i]+":"+this.X[i]+":"+outR);
 			ctx.beginPath();
 			for(var j=0;j<5;j++){
-			ctx.lineTo(Math.cos((18+72*j-rot)*Math.PI/180)*outR+this.X[i],
-					-Math.sin((18+72*j-rot)*Math.PI/180)*outR+this.Y[i]);
-			ctx.lineTo(Math.cos((54+72*j-rot)*Math.PI/180)*inR+this.X[i],
-					-Math.sin((54+72*j-rot)*Math.PI/180)*inR+this.Y[i]);
+			ctx.lineTo(Math.cos((18+72*j-this.scale[i]*72)*Math.PI/180)*outR*this.scale[i]+this.X[i],
+					-Math.sin((18+72*j-this.scale[i]*72)*Math.PI/180)*outR*this.scale[i]+this.Y[i]);
+			ctx.lineTo(Math.cos((54+72*j-this.scale[i]*72)*Math.PI/180)*inR*this.scale[i]+this.X[i],
+					-Math.sin((54+72*j-this.scale[i]*72)*Math.PI/180)*inR*this.scale[i]+this.Y[i]);
 		
 			}
 			ctx.closePath();
-			ctx.fillStyle="#f00";
+			ctx.fillStyle="#fff";
+			ctx.shadowBlur=20;
+			ctx.shadowColor="#fff";
 			ctx.fill();
-			console.log("a");
-			this.X[i]+=0.01;
-			if(this.Y[i]<300){
-				this.Y[i]+=0.1;
+			this.X[i]+=this.deleX[i];
+			if(this.Y[i]<309){
+				this.Y[i]+=2;
 			}else{
 				this.alive[i]=false;
+				this.Y[i]=-15;
 			}
+			this.scale[i]-=0.002;
 			
 		}
 	};
@@ -104,7 +103,10 @@ starObj.prototype.draw=function(){
 starObj.prototype.born=function(i){
 	this.alive[i]=true;
 	this.X[i]=Math.random()*canvas.width();
-	this.scale[i]=Math.random()*0.5+0.5;
+	this.scale[i]=Math.random()*0.3+0.3;
+	this.deleX[i]=Math.random()*4-2;
+	// this.rot[i]=
+
 }
 
 starObj.prototype.update=function(){
