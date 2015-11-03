@@ -1,14 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
 	<meta charset="UTF-8">
 	<title>Home Page</title>
 	<style type="text/css">
-		html,body,div{
+		html,body,div,p,h3,h5,ul{
 			margin:0;
 			border: 0;
 			padding: 0;
-			background-color: #48f;
+		}
+		body{
+			font-family: Helvetica, sans-serif;
+			background-color: rgb(102,51,153);
+			overflow-x:hidden ;
+		}
+		#ul1{
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+			height: 40px;
+			background: #033;
+		}
+		#ul2{
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+		}
+		.lis{
+			list-style: none;
+			font-size:20px;
+			color: #fff;
+			text-align: center;
+		}
+		#lis1,#lis2{
+			cursor:pointer;
+			margin:auto;
+		}
+		#content1,#content2{
+			display: block;
+			font-size: 20px;
+			text-align: center;
+		}
+		#content2{
+			display: none;
+			font-family: "微软雅黑";
+		}
+		h3{
+			margin-top: 30px;
+			margin-bottom: 10px;
+		}
+		h5{
+
+			margin-top: 10px;
+		}
+		#foot{
+			margin-top: 80px;
+			height: 80px;
+			background: rgb(0,153,255);
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+			justify-content: center;
+			-ms-align-items: center;
+			align-items: center;
+		}
+		#imgdiv{
+			height: 313px;
+			width: 500px;
+			margin: 10px auto;
+			border: 5px solid #efefef;
+			border-radius: 4px;
+			box-shadow: 0 3px 4px rgba(0,0,0,0.3);
+		}
+		#img{
+			list-style: none;
+		}
+		#imgdiv ul{
+			position: relative;
+		}
+		#img:before{
+			content: "";
+			position: absolute;
+			height: 85%;
+			width: 91%;
+			left: 28px;
+			bottom: 20px;
+			background: transparent;
+			box-shadow: 2px 15px 25px 3px rgba(0,0,0,0.6);
+			-webkit-transform: skew(-12deg) rotate(-4deg);
+			-ms-transform: skew(-12deg) rotate(-4deg);
+			-o-transform: skew(-12deg) rotate(-4deg);
+			transform: skew(-12deg) rotate(-4deg);
+			z-index: -1;
+		}
+		#img:after{
+			content: "";
+			position: absolute;
+			height: 85%;
+			width: 91%;
+			left: 16px;
+			bottom: 20px;
+			background: transparent;
+			box-shadow: 2px 15px 25px 3px rgba(0,0,0,0.6);
+			-webkit-transform: skew(12deg) rotate(4deg);
+			-ms-transform: skew(12deg) rotate(4deg);
+			-o-transform: skew(12deg) rotate(4deg);
+			transform: skew(12deg) rotate(4deg);
+			z-index: -2;
+		}
+		a{
+			text-decoration: none;
+		}
+		a:visited{
+			color: blue;
+		}
+		a:hover{
+			color: red;
+			text-decoration: underline;
+		}
+		.logo{
+			width:29px;
+			background: url("/star/b.png");
+		}
+		#sec{
+			-ms-background-position-x: 29px;
+			background-position-x: 29px;
+		}
+		.lis a,.lis a:visited,.lis a:link{
+			text-decoration: none;
+			color: #ccc;
 		}
 	</style>
 </head>
@@ -23,19 +149,52 @@
 		<div id="content">
 			<!-- 头部 -->
 			<div id="top">
-				
+				<ui id="ul1">
+					<li id="lis1" class="lis">firstPage</li>
+					<!-- <li class="lis">I</li> -->
+					<li id="lis2" class="lis">panda</li>
+				</ui>
 			</div>
 			<!-- 内容 -->
 			<div id="body">
-				
+				<div id="content1">
+					<h3>The Road Not Taken</h3>
+					<h5>Robert Frost</h5>
+					<p class="text">Two roads diverged in a yellow wood</br>And sorry I could not travel both</br>And be one traveler, long I stood</br>And looked down one as far as I could</br>To where it bent in the undergrowth.</br></br>Then took the other, as just as fair</br>And having perhaps the better claim</br>Because it was grassy and wanted wear</br>Though as for that the passing there</br>Had worn them really about the same.</br></br>And both that morning equally lay</br>In leaves no step had trodden black</br>Oh, I kept the first for another day</br>Yet knowing how way leads on to way</br>I doubted if I should ever come back.</br></br>I shall be telling this with a sigh</br>Somewhere ages and ages hence:</br>Two roads diverged in a wood, and I--</br>I took the one less traveled by</br>And that has made all the difference.</p>
+				</div>
+				<div id="content2">
+					<h3>"猫熊"游戏</h3>
+					<div id="imgdiv">
+						<ul>
+							<li id="img"><img src="/star/a.jpg" alt="猫熊图片" ></li>
+						</ul>
+					</div>
+					
+					
+					<p>你可以点击链接访问"猫熊"游戏<a href="http://www.pmxg.cf/panda">pmxg.cf/panda</a></p>
+					<h5>玩法</h5>
+					<p>加载完成之后按"空格"键开始，使用上下左右键控制熊猫移动，通过下滑攻击害虫得分</p>
+					<p>每消灭一个害虫获得5分，结束之前获得5分以上可以提交自己的成绩</br>你可填写自己的大名，当你进入前十名后大家都能看到你的成绩</br>
+					</p>
+					<h5>关于</h5>
+					<p>"猫熊"是一个古老的手机游戏，我用HTML5重写了它，现在还在不断完善中，你可以通过<a href="https://github.com/pmxg/panda.git">github</a>查看它的源码</br>
+						如果你有什么建议，请通过以下方式联系我</p>
+
+				</div>
 			</div>
 			<!-- 底部 -->
 			<div id="foot">
-				
+				<ul id="ul2">
+					<li class="lis"><a href="http://weibo.com/pmxg/">weibo</a></li>
+					<li class="lis logo"></li>
+					<li class="lis"><a href="mailto:pmxg@foxmail.com">Email</a></li>
+					<li class="lis logo" id="sec"></li>
+				</ul>
 			</div>
 		</div>
 	</div>	
-<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js" type="text/javascript"></script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="js.js"></script>
+<script type="text/javascript" src="cont.js"></script>
 </body>
 </html>
