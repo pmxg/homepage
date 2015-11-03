@@ -25,20 +25,14 @@ $(function(){
 $(window).resize(resizeCanvas);
  function resizeCanvas() {
         canvas.attr("width", $(window).get(0).innerWidth);
-  //       ctx.fillStyle="#48f";
-		// ctx.fillRect(0, 0, canvas.width(), 300);
  };
  // 动画
  function loop(){
- 	// console.log("a");
  	ctx.clearRect(0,0,canvas.width(),300);
- 	ctx.fillStyle="#48f";
-	ctx.fillRect(0, 0, canvas.width(), 300);
  	// 画星星
  	star.draw();
  	now=Date.now();
 	deltTime=now-lastTime;
-	// console.log(deltTime);
 	lastTime=now;
  	star.update();
 
@@ -46,7 +40,6 @@ $(window).resize(resizeCanvas);
  }
 // 星星类
 var starObj=function(){
-	// this.num=20;
 	this.alive=[];
 	this.X=[];
 	this.Y=[];
@@ -69,9 +62,7 @@ starObj.prototype.draw=function(){
 	ctx.save();
 	ctx.globalAlpha=0.7;
 	for (var i = 0; i < this.num; i++) {
-		// console.log(this.alive[i]);
 		if(this.alive[i]){
-			 // console.log(i+":"+this.Y[i]+":"+this.X[i]+":"+outR);
 			ctx.beginPath();
 			for(var j=0;j<5;j++){
 			ctx.lineTo(Math.cos((18+72*j-this.scale[i]*120)*Math.PI/180)*outR*this.scale[i]+this.X[i],
@@ -105,12 +96,10 @@ starObj.prototype.born=function(i){
 	this.X[i]=Math.random()*(canvas.width()+50)-100;
 	this.scale[i]=Math.random()*0.3+0.3;
 	this.deleX[i]=Math.random()*4-2;
-	// this.rot[i]=
 
 }
 
 starObj.prototype.update=function(){
-// console.log(starBornTimer);
 	var du=Math.random()*900+450
 	starBornTimer+=deltTime
 	if(starBornTimer>=du){
@@ -119,12 +108,8 @@ starObj.prototype.update=function(){
 		for (var i = 0; i < this.num; i++) {
 			if(!this.alive[i]){
 				this.born(i);
-				// console.log("a");
-				return
-				
+				return;
 			}
 		}
-	
 	}
-	
 }
