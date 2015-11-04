@@ -17,7 +17,6 @@ $(function(){
 	star=new starObj();
 	star.init();
 	lastTime=Date.now();
-	// console.log(lastTime);
 	loop();
 
 });
